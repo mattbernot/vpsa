@@ -1,3 +1,11 @@
+// Modul redovalnica je program za vpis ocen študentov
+//
+// Ta modul uporablja funkcije za:
+//   - Dodajanje ocen študenta
+//   - Izračunanje povprečja
+//   - Izpis redovalnice
+//   - Izpis končnega uspeha
+
 package redovalnica
 
 import "fmt"
@@ -8,9 +16,10 @@ type Student struct {
 	Ocene   []int
 }
 
+// Funkcija DodajOceno doda študentu v seznamu, če je ocena med 1 in 10.
 func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int, minOcena int, maxOcena int) {
 	if ocena <= minOcena || ocena >= maxOcena {
-		fmt.Println("Vpisana ocena ni med 0 in 10")
+		fmt.Println("Vpisana ocena ni med 1 in 10")
 		return
 	}
 	_, ok := studenti[vpisnaStevilka]
@@ -25,6 +34,7 @@ func DodajOceno(studenti map[string]Student, vpisnaStevilka string, ocena int, m
 
 }
 
+// Funkcija povprečje izračuna povprečje vseh ocen za posameznega študenta.
 func povprecje(studenti map[string]Student, vpisnaStevilka string, stOcen int) float64 {
 	_, ok := studenti[vpisnaStevilka]
 	if ok == false {
@@ -45,6 +55,7 @@ func povprecje(studenti map[string]Student, vpisnaStevilka string, stOcen int) f
 
 }
 
+// Funkcija IzpisRedovalnice izpiše vse ocene vseh študentov.
 func IzpisRedovalnice(studenti map[string]Student) {
 	fmt.Println("REDOVALNICA:")
 	for vpisnaSt := range studenti {
@@ -52,6 +63,7 @@ func IzpisRedovalnice(studenti map[string]Student) {
 	}
 }
 
+// Funkcija IzpisiKoncniUspeh izpiše povprečno oceno in končni uspeh za vsakega študenta.
 func IzpisiKoncniUspeh(studenti map[string]Student, stOcen int) {
 	for vpisnaSt := range studenti {
 		povp_ocena := povprecje(studenti, vpisnaSt, stOcen)
