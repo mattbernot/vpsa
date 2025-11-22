@@ -24,7 +24,7 @@ func main() {
 			&cli.IntFlag{
 				Name:  "minOcena",
 				Usage: "Najmanjša možna ocena",
-				Value: 0,
+				Value: 1,
 			},
 			&cli.IntFlag{
 				Name:  "maxOcena",
