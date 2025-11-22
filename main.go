@@ -5,7 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/urfave/cli/v3"
+	redovalnica "github.com/mattbernot/vpsa/redovalnica"
+
+	"github.com/urfave/cli/v2"
 )
 
 func main() {
@@ -35,17 +37,17 @@ func main() {
 			maxOcena := ctx.Int("maxOcena")
 			stOcen := ctx.Int("stOcen")
 
-			var studenti = make(map[string]Student)
+			studenti := make(map[string]redovalnica.Student)
 
-			studenti["6240050"] = Student{"Janko", "Bananko", []int{5, 6, 2, 7, 8, 10}}
-			studenti["6240051"] = Student{"Jana", "Banana", []int{4, 8, 7, 7, 9}}
-			studenti["6240052"] = Student{"Dejan", "Smrkolj", []int{9, 9, 10, 9, 10, 8}}
+			studenti["6240050"] = redovalnica.Student{"Janko", "Bananko", []int{5, 6, 2, 7, 8, 10}}
+			studenti["6240051"] = redovalnica.Student{"Jana", "Banana", []int{4, 8, 7, 7, 9}}
+			studenti["6240052"] = redovalnica.Student{"Dejan", "Smrkolj", []int{9, 9, 10, 9, 10, 8}}
 
-			redovalnica.DodajOceno(studenti, "1234567", 8)
-			redovalnica.DodajOceno(studenti, "6240050", 5)
+			redovalnica.DodajOceno(studenti, "1234567", 8, minOcena, maxOcena)
+			redovalnica.DodajOceno(studenti, "6240050", 5, minOcena, maxOcena)
 			redovalnica.IzpisRedovalnice(studenti)
 			fmt.Println()
-			redovalnica.IzpisiKoncniUspeh(studenti)
+			redovalnica.IzpisiKoncniUspeh(studenti, stOcen)
 
 			return nil
 		},
